@@ -36,7 +36,14 @@ class PiezasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pieza = new Pieza;
+        $pieza->nombre=$request->nombre;
+        $pieza->descripcion=$request->descripcion;
+        $pieza->numeroPiezas=$request->numeroPiezas;
+        $pieza->precio=$request->precio;
+        $pieza->save();
+
+        return redirect('/piezas');
     }
 
     /**
@@ -45,9 +52,10 @@ class PiezasController extends Controller
      * @param  \App\Pieza  $pieza
      * @return \Illuminate\Http\Response
      */
-    public function show(Pieza $pieza)
+    public function show($id)
     {
-        //
+        $pieza = Pieza::find($id);
+        return view('propiedadesPieza')->with('pieza',$pieza);
     }
 
     /**
@@ -70,7 +78,20 @@ class PiezasController extends Controller
      */
     public function update(Request $request, Pieza $pieza)
     {
-        //
+       
+    }
+
+    public function guardaCampos(Request $request)
+    {
+        $pieza = Pieza::find($request->id);
+        
+        $pieza->nombre = $request->nombre;
+        $pieza->descripcion=$request->descripcion;
+        $pieza->numeroPiezas=$request->numeroPiezas;
+        $pieza->precio=$request->precio;
+        $pieza->save();
+    
+        return redirect('/piezas');
     }
 
     /**
@@ -79,8 +100,10 @@ class PiezasController extends Controller
      * @param  \App\Pieza  $pieza
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pieza $pieza)
+    public function destroy($id)
     {
-        //
+        $pieza = Pieza::find($id);
+        $pieza->delete();
+        return redirect('/piezas');
     }
 }

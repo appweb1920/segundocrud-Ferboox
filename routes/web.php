@@ -19,4 +19,10 @@ Route::get('/', function () {
 
 //Pieza
 Route::get('/piezas','PiezasController@index'); //Muestra todas las piezas.
+Route::post('/registroPieza','PiezasController@store');
+Route::get('/editarPieza/{id}','PiezasController@show');
+Route::post('/editarPieza/guardaPieza','PiezasController@guardaCampos');
+Route::get('/borrarPieza/{id}','PiezasController@destroy');
+
+
 
