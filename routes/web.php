@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Pieza
+Route::get('/piezas','PiezasController@index'); //Muestra todas las piezas.
+
